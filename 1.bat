@@ -1,4 +1,4 @@
-@echo off
+@echo off 
 setlocal enabledelayedexpansion
 
 :: فایل خروجی تعریف می‌شود
@@ -21,7 +21,8 @@ for /f "tokens=*" %%A in ('netsh wlan show profiles') do (
 :: پایان کار
 echo.
 echo WiFi profiles have been saved to %output_file%
-pause
+:: برنامه به صورت خودکار بسته می‌شود
+timeout /t 1 >nul
 exit
 
 :ProcessProfile
