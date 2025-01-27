@@ -1,6 +1,6 @@
 # Tiny Fun Viruses
 
-A collection of tiny, fun viruses created purely for entertainment and playful programming experiments. This project is meant just for fun and harmless testing!
+A collection of tiny, fun viruses and malware created purely for entertainment and playful programming experiments. This project is meant just for fun and harmless testing!
 
 ## ⚠️ Disclaimer
 
