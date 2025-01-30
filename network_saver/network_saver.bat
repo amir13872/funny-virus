@@ -35,5 +35,4 @@ timeout /t 1 >nul
 exit
 
 
-'''Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "2.bat", 0, False'''
+:: Set WshShell = CreateObject("WScript.Shell") / WshShell.Run "2.bat", 0, False
