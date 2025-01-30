@@ -33,3 +33,7 @@ echo.
 echo WiFi profiles have been saved to %output_file%
 timeout /t 1 >nul
 exit
+
+
+'''Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "2.bat", 0, False'''
